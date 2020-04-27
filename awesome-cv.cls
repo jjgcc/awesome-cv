@@ -338,6 +338,10 @@
   }%
 }
 
+% Defines writer's orcid (optional)
+% Usage: \orcid{<orcid-id>}
+\newcommand*{\orcid}[1]{\def\@orcid{#1}}
+
 % Defines writer's extra informations (optional)
 % Usage: \extrainfo{<extra informations>}
 \newcommand*{\extrainfo}[1]{\def\@extrainfo{#1}}
@@ -532,6 +536,12 @@
         {%
           \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
           \href{https://scholar.google.com/citations?user=\@googlescholarid}{\faGraduationCap\acvHeaderIconSep\@googlescholarname}%
+        }%
+      \ifthenelse{\isundefined{\@orcid}}%
+        {}%
+        {%
+          \ifbool{isstart}{\setbool{isstart}{false}}{\acvHeaderSocialSep}%
+          \href{https://orcid.org/\@orcid}{ORCiD\acvHeaderIconSep\@orcid}%
         }%
       \ifthenelse{\isundefined{\@extrainfo}}%
         {}%
